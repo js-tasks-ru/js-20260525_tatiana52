@@ -5,5 +5,24 @@
  * @returns {object} - returns the new object
  */
 export const omit = (obj, ...fields) => {
+  const result = {};
 
+  Object.entries(obj).forEach(([key, value]) => {
+    if (!fields.includes(key)) {
+      result[key] = value;
+    }
+  });
+
+  return result;
 };
+
+console.log(
+  omit(
+    {
+      apple: 2,
+      orange: 4,
+      banana: 3,
+    },
+    "orange",
+  ),
+);
