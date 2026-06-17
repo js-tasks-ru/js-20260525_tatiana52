@@ -5,8 +5,19 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = "asc") {
-  const sortingFn = (a, b) =>
-    param === "asc" ? a.localeCompare(b) : b.localeCompare(a);
+  const sortingFn = (a, b) => {
+    const arg1 = param === "asc" ? a : b;
+    const arg2 = param === "asc" ? b : a;
 
-  return arr.sort(sortingFn);
+    return arg1.localeCompare(arg2, "ru", {
+      sensitivity: "case",
+      caseFirst: "upper",
+    });
+  };
+
+  return [...arr].sort(sortingFn);
 }
+
+console.log(
+  sortStrings(["Apple", "apple", "Banana", "banana", "Orange", "orange"]),
+);
