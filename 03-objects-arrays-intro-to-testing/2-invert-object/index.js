@@ -9,10 +9,8 @@ export function invertObj(obj) {
   }
   const pairs = Object.entries(obj);
 
-  return pairs.reduce((acc, item) => {
-    acc[item[1]] = item[0];
+  return pairs.reduce((acc, [key, value]) => {
+    acc[value] = key;
     return acc;
   }, {});
 }
-
-console.log(invertObj({ 1: 2, 3: 4 }));
