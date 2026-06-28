@@ -14,13 +14,12 @@ export function createGetter(path) {
 
     let result = obj;
 
-    for (let i = 0; i < objNodes.length; i++) {
-      if (Object.hasOwn(result, objNodes[i])) {
-        result = result[objNodes[i]];
-      } else {
-        result = undefined;
-        break;
+    for (const key of objNodes) {
+      if (!result?.hasOwnProperty(key)) {
+        return;
       }
+
+      result = result[key];
     }
 
     return result;
