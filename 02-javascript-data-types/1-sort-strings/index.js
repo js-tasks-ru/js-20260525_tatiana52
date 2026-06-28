@@ -5,6 +5,12 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = "asc") {
+  const paramVariants = ["asc", "desc"];
+
+  if (!!param && !paramVariants.includes(param)) {
+    throw new Error("Param is invalid, use 'asc' or 'desc' instead");
+  }
+
   const sortingFn = (a, b) => {
     const arg1 = param === "asc" ? a : b;
     const arg2 = param === "asc" ? b : a;
@@ -17,7 +23,3 @@ export function sortStrings(arr, param = "asc") {
 
   return [...arr].sort(sortingFn);
 }
-
-console.log(
-  sortStrings(["Apple", "apple", "Banana", "banana", "Orange", "orange"]),
-);
